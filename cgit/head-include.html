@@ -1,0 +1,16 @@
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" type="text/css" href="/cgit-css/theme.css?v=3"/>
+<link rel="stylesheet" type="text/css" href="/cgit-css/github-dark.min.css" id="hljs-theme"/>
+<script src="/cgit-css/highlight.min.js" defer></script>
+<script>
+    "use strict";
+    document.addEventListener("DOMContentLoaded", () => {
+        // Highlight.js
+        const blob = document.querySelector("div#cgit table.blob td.lines pre code");
+        const path = document.querySelector("div#cgit div.path a:last-child");
+        if (blob !== null && path !== null) {
+            blob.classList.add("language-" + path.textContent.split(".").pop());
+            hljs.highlightElement(blob);
+        }
+    });
+</script>
