@@ -1,50 +1,49 @@
 # cgit-container
 
-## [CGit](https://git.zx2c4.com/cgit/about/) container built from source on Alpine running using Nginx with a GitHub-inspired theme.
-
-Nginx is pinned to stable (1.28.x) and the image uses Alpine Linux for a small footprint.
+A lightweight Docker container for [CGit](https://git.zx2c4.com/cgit/about/), built from source on Alpine Linux and powered by Nginx. Designed for a minimal footprint, this image uses Alpine Linux and always tracks the latest stable release of Nginx.
 
 ## Quick Start
 
-Run the locally built image:
+Run the container locally by mounting your repositories:
 
 ```sh
 docker run --rm -it -p 8080:8080 -v /my/repos/:/srv/git/:ro cgit-container:latest
 ```
 
-## Container Paths
+## Volumes & Paths
 
 | Path | Description |
 |------|-------------|
-| `/etc/cgitrc` | CGit config file (dynamically generated at start) |
-| `/srv/git` | Git repositories (mount yours here) |
-| `/var/cache/cgit` | HTML cache (mount as `tmpfs` for maximum performance) |
+| `/etc/cgitrc` | CGit configuration file (dynamically generated at startup) |
+| `/srv/git` | Mount your Git repositories here |
+| `/var/cache/cgit` | HTML cache (mount as `tmpfs` for optimal performance) |
 
 ## Environment Variables
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `CGIT_TITLE` | `CGit` | Page title |
-| `CGIT_DESC` | `The hyperfast web frontend for Git repositories` | Page description |
-| `CGIT_WORKERS` | `1` | Number of fcgiwrap workers (max 4) |
+| `CGIT_TITLE` | `CGit` | Main page title |
+| `CGIT_DESC` | `The hyperfast web frontend for Git repositories` | Main page description |
+| `CGIT_WORKERS` | `1` | Number of `fcgiwrap` workers (max 4) |
 
-## Theme
+## Theme Features
 
-Ships with a modernized [GitHub-inspired theme](https://www.hackitu.de/cgithub/) featuring:
-- Consistent modern Dark Theme across the UI
-- Modern system font stack and improved readability
-- [Octicon](https://primer.style/foundations/icons) SVG tab icons
-- GitHub-style diff colors, branch/tag decorations, and responsive layout
-- Client-side syntax highlighting via vendored [highlight.js](https://highlightjs.org/) (bundled in the image, no external requests)
+This image ships with a modernized, [GitHub-inspired dark theme](https://www.hackitu.de/cgithub/) out of the box. Key features include:
 
-To disable, override `head-include` in a custom cgitrc.
+- A consistent, modern dark UI across all pages
+- Improved readability with an updated system font stack
+- Integration of [Octicon](https://primer.style/foundations/icons) SVG tab icons
+- GitHub-style diff styling, responsive layouts, and branch/tag decorations
+- Fast, client-side syntax highlighting via bundled [highlight.js](https://highlightjs.org/) (zero external requests)
+
+*Note: To disable the custom theme, override the `head-include` directive by mounting a custom `cgitrc`.*
 
 ## Credits
 
-- Theme based on [cgithub](https://www.hackitu.de/cgithub/) by hackitu.de
-- Docker setup inspired by [joseluisq/alpine-cgit](https://github.com/joseluisq/alpine-cgit)
+- Theme adapted from [cgithub](https://www.hackitu.de/cgithub/) by hackitu.de
+- Container architecture inspired by [joseluisq/alpine-cgit](https://github.com/joseluisq/alpine-cgit)
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE). 
-Note that CGit and Git (compiled within the container) are licensed under GPLv2.
+This project is licensed under the [MIT License](LICENSE).  
+*Note: CGit and Git (compiled within the container) are distributed under the GPLv2 license.*
