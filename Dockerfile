@@ -28,7 +28,7 @@ RUN make -j"$(nproc)" NO_REGEX=NeedsStartEnd NO_GETTEXT=YesPlease \
 
 # ---
 
-FROM nginx:1.28-alpine
+FROM nginx:stable-alpine
 
 ARG CGIT_VERSION=1.3.1
 ENV CGIT_VERSION=${CGIT_VERSION}
