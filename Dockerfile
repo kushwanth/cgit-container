@@ -1,4 +1,4 @@
-FROM alpine:3.24 AS builder
+FROM alpine:3.24.4 AS builder
 
 ARG CGIT_VERSION=1.3.1
 
